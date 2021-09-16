@@ -2,7 +2,10 @@
   all: revert;
   display: inline-block;
 
-  position: relative;
+  position: fixed;
+  bottom: 2em;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .meetvol-container * {
@@ -30,35 +33,75 @@
   color: black;
 }
 
-.meetvol-control-item {
+.meetvol-item {
   width: 100%;
-  margin: 0.25em 1em;
+  margin: 0.5em 1em;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   text-align: center;
 }
 
-.meetvol-control-item > * {
+.meetvol-item > * {
+  margin: 0.25em 0;
+}
+
+.meetvol-slider-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.meetvol-slider-item > * {
   margin: 0 0.25em;
   text-align: center;
 }
 
-.meetvol-control-item .meetvol-slider {
+.meetvol-slider-item .meetvol-slider {
   width: 75%;
   margin: 0 1em;
 }
 
-.meetvol-control-item .meetvol-slider-index {
+.meetvol-slider-item .meetvol-slider-index {
   width: 1.2em;
 }
 
-.meetvol-control-item .meetvol-slider-output {
+.meetvol-slider-item .meetvol-slider-output {
   width: 2.5em;
 }
 
-.meetvol-control-item .meetvol-slider-gainView {
+.meetvol-slider-item .meetvol-slider-gainView {
   width: 2.75em;
+}
+
+.meetvol-visualizer {
+  width: 100%;
+  height: 0.85em;
+  position: relative;
+}
+
+.meetvol-visualizer-bg {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: gray;
+}
+
+.meetvol-visualizer-fg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+
+  background-color: #aec7f4;
 }

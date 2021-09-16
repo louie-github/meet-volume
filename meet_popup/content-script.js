@@ -1,4 +1,6 @@
-const meetButtonsQS = '[class="cZG6je"]';
+const IS_DEBUG = true;
+
+const meetButtonsQS = IS_DEBUG ? "body" : '[class="cZG6je"]';
 const containerDivQS = ".meetvol-container";
 const popupDivQS = ".meetvol-popup";
 const btnQS = ".meetvol-button";
@@ -78,7 +80,7 @@ function togglePopupVisibility(state) {
 
 function getSliders() {
   sliderItems = [];
-  for (const item of document.querySelectorAll(".meetvol-control-item")) {
+  for (const item of document.querySelectorAll(".meetvol-item")) {
     sliderItems.push({
       item: item,
       index: parseInt(item.querySelector(".meetvol-slider-index").textContent),

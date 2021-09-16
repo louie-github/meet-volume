@@ -21,7 +21,7 @@
 
   "content_scripts": [
     {
-      "matches": ["*://meet.google.com/*"],
+      "matches": ["*://*/*"],
       "css": ["meet_popup/style.css"],
       "js": ["meet_popup/content-script.js"]
     }
