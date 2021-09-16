@@ -2,10 +2,7 @@
   all: revert;
   display: inline-block;
 
-  position: fixed;
-  bottom: 2em;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
 }
 
 .meetvol-container * {

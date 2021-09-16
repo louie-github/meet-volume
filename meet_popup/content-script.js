@@ -1,4 +1,4 @@
-const IS_DEBUG = true;
+const IS_DEBUG = false;
 
 const meetButtonsQS = IS_DEBUG ? "body" : '[class="cZG6je"]';
 const containerDivQS = ".meetvol-container";
@@ -6,7 +6,7 @@ const popupDivQS = ".meetvol-popup";
 const btnQS = ".meetvol-button";
 
 let clickListener;
-let sliderItems = [];
+let meetvolItems = [];
 let audioElements = [];
 let containerDiv, popupDiv, button;
 
@@ -30,8 +30,11 @@ function setupMeetStreams() {
     const sourceNode = audioContext.createMediaStreamSource(originalStream);
     const destinationNode = audioContext.createMediaStreamDestination();
     const gainNode = audioContext.createGain();
+    const analyserNode = audioContext.createAnalyser();
+    const analyserArray = new Float32Array(analyserNode.frequencyBinCount);
     sourceNode.connect(gainNode);
-    gainNode.connect(destinationNode);
+    gainNode.connect(analyserNode);
+    analyserNode.connect(destinationNode);
 
     element.muted = true;
     // Create new element to play adjusted audio.
@@ -46,9 +49,13 @@ function setupMeetStreams() {
       newElement: newElement,
       originalStream: originalStream,
       newStream: destinationNode.stream,
-      sourceNode: sourceNode,
-      gainNode: gainNode,
-      destinationNode: destinationNode,
+      nodes: {
+        sourceNode: sourceNode,
+        gainNode: gainNode,
+        analyserNode: analyserNode,
+        destinationNode: destinationNode,
+      },
+      analyserArray: analyserArray,
     });
   }
 }
@@ -59,18 +66,38 @@ function resetMeetStreams() {
     item.element.muted = false;
     item.element.play();
     item.newElement.remove();
-    item.gainNode.disconnect();
-    item.sourceNode.disconnect();
+    for (const node in item.nodes) {
+      node.disconnect();
+    }
   }
   audioElements = [];
 }
 
 function setVolume(index, value) {
   const audioItem = audioElements[index];
-  audioItem.gainNode.gain.linearRampToValueAtTime(
+  audioItem.nodes.gainNode.gain.linearRampToValueAtTime(
     value,
     audioContext.currentTime + 0.1
   );
+}
+
+function absSum(arr) {
+  return arr.reduce((sum, i) => sum + Math.abs(i));
+}
+
+function visualizeVolumes() {
+  for (let i = 0; i < audioElements.length; i++) {
+    audioItem = audioElements[i];
+    meetvolItem = meetvolItems[i];
+    audioItem.nodes.analyserNode.getFloatTimeDomainData(
+      audioItem.analyserArray
+    );
+    meetvolItem.visualizer.fg.style.width =
+      (absSum(audioItem.analyserArray) * 2 * 100) /
+        audioItem.analyserArray.length +
+      "%";
+  }
+  requestAnimationFrame(visualizeVolumes);
 }
 
 function togglePopupVisibility(state) {
@@ -78,21 +105,25 @@ function togglePopupVisibility(state) {
   popupDiv.style.display = popupDiv.hidden ? "none" : "";
 }
 
-function getSliders() {
-  sliderItems = [];
+function getMeetVolItems() {
+  meetvolItems = [];
   for (const item of document.querySelectorAll(".meetvol-item")) {
-    sliderItems.push({
+    meetvolItems.push({
       item: item,
       index: parseInt(item.querySelector(".meetvol-slider-index").textContent),
       slider: item.querySelector('input[type="range"].meetvol-slider'),
       output: item.querySelector(".meetvol-slider-output"),
       gainView: item.querySelector(".meetvol-slider-gainView"),
+      visualizer: {
+        bg: item.querySelector(".meetvol-visualizer-bg"),
+        fg: item.querySelector(".meetvol-visualizer-fg"),
+      },
     });
   }
 }
 
 function connectSlidersToOutputs() {
-  for (const item of sliderItems) {
+  for (const item of meetvolItems) {
     item.slider.addEventListener("input", () => {
       item.output.textContent = item.slider.value;
       let newValue = item.slider.value / 100;
@@ -107,7 +138,7 @@ function setupElements() {
   containerDiv = document.querySelector(containerDivQS);
   popupDiv = document.querySelector(popupDivQS);
   button = document.querySelector(btnQS);
-  sliderItems = [];
+  meetvolItems = [];
 
   // Thanks: https://stackoverflow.com/a/36696086/8646315
   if (clickListener !== undefined) {
@@ -125,11 +156,12 @@ function setupElements() {
   window.addEventListener("click", clickListener);
   setupAudioAPI();
   setupMeetStreams();
-  getSliders();
-  for (const sliderItem of sliderItems) {
+  getMeetVolItems();
+  for (const sliderItem of meetvolItems) {
     sliderItem.slider.value = 100;
   }
   connectSlidersToOutputs();
+  visualizeVolumes();
 }
 
 function injectHTML() {
