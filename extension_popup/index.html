@@ -6,16 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meet Volume</title>
     <style>
-      button {
+      .button-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 10em;
+      }
+
+      .button-container button {
         margin: 0.5em 1em;
+        padding: 0.5em 0;
+
+        width: 90%;
+
+        background-color: #295fd3;
+        color: white;
+        border: none;
+        border-radius: 0.2em;
+
         font-size: 1.05em;
+      }
+
+      .button-container button:hover {
+        background-color: #5e88e2;
+      }
+
+      .button-container button:active {
+        background-color: #2c318d;
       }
     </style>
   </head>
   <body>
-    <button id="add-button">Add popup</button>
-    <br />
-    <button id="remove-button">Remove popup</button>
+    <div class="button-container">
+      <button id="add-button">Add popup</button>
+      <button id="remove-button">Reset</button>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
