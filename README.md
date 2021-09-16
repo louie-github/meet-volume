@@ -1,4 +1,4 @@
-## Meet Volume
+# Meet Volume
 Implements volume adjustment for each of the three (3) individual audio
 streams provided by Google Meet. In the future, presentation audio
 will also be adjustable.
@@ -20,7 +20,7 @@ is relatively rare that anyone else will unmute their microphone and
 start talking.
 
 
-### How to install
+## How to install
 First, click on Code and then Download ZIP, or, alternatively, you can
 [download the file directly](https://github.com/louie-github/meet-volume/archive/refs/heads/master.zip).
 Afterwards, extract the *meet-volume-master* folder.
@@ -36,7 +36,7 @@ to load an unpacked extension as a Temporary Add-On. Note that this
 add-on will not persist between browser restarts.
 
 
-### IMPORTANT: Current bugs
+## IMPORTANT: Current bugs
 A bug currently exists whereby activating this extension in
 Chromium-based browsers **breaks Google Meet's audio visualizations.**
 
@@ -50,7 +50,7 @@ Technical details of the bug will be written later on, but all help is
 appreciated to fix this!
 
 
-### License
+## License
 Code is licensed under the [MIT License](LICENSE.md).
 
 Meet Volume Icons © 2021 by Louie Torres are licensed under
