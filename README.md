@@ -19,6 +19,18 @@ only one to three people at a time who are constantly talking, where it
 is relatively rare that anyone else will unmute their microphone and
 start talking.
 
+### How to use
+When you enter a Meet, click on the extension icon in the top right of
+your browser window. It might be hidden under the puzzle icon in
+Chromium-based browsers. You can pin the extension for easy access.
+
+Clicking on the extension will show a pop-up with two buttons. One
+button enables the volume adjustment pop-up while the other button
+reverts all changes made and removes said pop-up.
+
+The next steps should be self-explanatory. File an issue if you have
+any trouble getting the extension to work!
+
 
 ## How to install
 First, click on Code and then Download ZIP, or, alternatively, you can
@@ -48,6 +60,9 @@ This is not an issue on Firefox.
 
 Technical details of the bug will be written later on, but all help is
 appreciated to fix this!
+
+Note that removing the popup by pressing the *Reset* button will reset
+Meet to its previous state, bringing back said audio visualizations.
 
 
 ## License
