@@ -1,4 +1,4 @@
-## Meet Volume (UNFINISHED)
+## Meet Volume
 Implements volume adjustment for each of the three (3) individual audio
 streams provided by Google Meet. In the future, presentation audio
 will also be adjustable.
@@ -18,6 +18,22 @@ Because of these limitations, this extension works best when there are
 only one to three people at a time who are constantly talking, where it
 is relatively rare that anyone else will unmute their microphone and
 start talking.
+
+
+### How to install
+First, click on Code and then Download ZIP, or, alternatively, you can
+[download the file directly](https://github.com/louie-github/meet-volume/archive/refs/heads/master.zip).
+Afterwards, extract the *meet-volume-master* folder.
+
+For Chrome users, follow the steps listed in
+[Creating the manifest](https://developer.chrome.com/docs/extensions/mv3/getstarted/#manifest)
+to load an unpacked extension, selecting the folder that you created
+in the above step.
+
+For Firefox users, follow the steps listed in
+[Installing](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#installing)
+to load an unpacked extension as a Temporary Add-On. Note that this
+add-on will not persist between browser restarts.
 
 
 ### IMPORTANT: Current bugs
