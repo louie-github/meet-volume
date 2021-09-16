@@ -6,7 +6,6 @@ const btnQS = ".meetvol-button";
 let clickListener;
 let sliderItems = [];
 let audioElements = [];
-// containerDiv is currently unused.
 let containerDiv, popupDiv, button;
 
 let audioContext;
