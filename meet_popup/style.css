@@ -82,6 +82,7 @@
   width: 100%;
   height: 0.85em;
   position: relative;
+  overflow: hidden;
 }
 
 .meetvol-visualizer-bg {
