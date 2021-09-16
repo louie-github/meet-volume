@@ -24,19 +24,10 @@
       "matches": ["<all_urls>"],
       "css": ["meet_popup/style.css"],
       "js": ["meet_popup/content-script.js"]
-    },
-    {
-      "matches": ["<all_urls>"],
-      "run_at": "document_start",
-      "js": ["meet_popup/monkeypatch-content-script.js"]
     }
   ],
 
-  "web_accessible_resources": [
-    "meet_popup/popup.html",
-    "meet_popup/style.css",
-    "meet_popup/monkeypatch.js"
-  ],
+  "web_accessible_resources": ["meet_popup/popup.html"],
 
   "background": {
     "scripts": ["background.js"]
