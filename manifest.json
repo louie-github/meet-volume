@@ -1,0 +1,44 @@
+{
+  "manifest_version": 2,
+  "name": "Meet Volume",
+  "version": "1.0",
+
+  "description": "Allows you to individually adjust the volume of the currently playing Meet audio sources.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "64": "icons/icon64.png"
+  },
+
+  "permissions": ["activeTab", "<all_urls>"],
+
+  "browser_action": {
+    "default_icon": "icons/icon48.png",
+    "default_title": "Meet Volume",
+    "default_popup": "extension_popup/index.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["meet_popup/style.css"],
+      "js": ["meet_popup/content-script.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "run_at": "document_start",
+      "js": ["meet_popup/monkeypatch-content-script.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    "meet_popup/popup.html",
+    "meet_popup/style.css",
+    "meet_popup/monkeypatch.js"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  }
+}
