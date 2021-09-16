@@ -20,6 +20,20 @@ is relatively rare that anyone else will unmute their microphone and
 start talking.
 
 
+### IMPORTANT: Current bugs
+A bug currently exists whereby activating this extension in
+Chromium-based browsers **breaks Google Meet's audio visualizations.**
+
+This means that you will not be able to see the blue circle on the top
+right of each user indicating whether they are talking, as well as the
+gray circle pulsing if their camera is off.
+
+This is not an issue on Firefox.
+
+Technical details of the bug will be written later on, but all help is
+appreciated to fix this!
+
+
 ### License
 Code is licensed under the [MIT License](LICENSE.md).
 
